@@ -12,11 +12,9 @@ int main(){
 	} else {
 		/* Child code*/
 		execve(command, parameters, 0);
-	
+
 	}
 	
 	}
-
-
 return 0;
 }
