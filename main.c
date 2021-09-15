@@ -1,7 +1,10 @@
 #define TRUE 1
+#include "stdlib.h"
+#include "stdio.h"
+
 
 int main(){
-
+		
 	while(TRUE){
 	type_prompt();
 	read_command(command, parameters);
