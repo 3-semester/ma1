@@ -35,8 +35,6 @@ int main(){
 		//execve(command, parameters, 0);
 		printf("I am a child with PID: %d", getpid());
 	}
-	
 	}
-
 	return 0;
 }
