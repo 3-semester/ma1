@@ -13,7 +13,7 @@ int main(){
 
 		int childPid = fork();
 
-		if(childPid > 0) {
+		if(childPid < 0) {
 			printf("Error!");
 			return 0;
 		}
