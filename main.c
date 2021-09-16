@@ -15,7 +15,7 @@ int main(){
 
 		if(childPid < 0) {
 			printf("Error!");
-			return 0;
+			return -1;
 		}
 
 		if(childPid != 0) {
