@@ -25,6 +25,7 @@ int main(){
 		else {
 			//execve(command, parameters, 0);
 			printf("I am a child with PID: %d", getpid());
+			exit(-1)
 		}
 	}
 	return 0;
