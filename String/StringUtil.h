@@ -5,11 +5,8 @@
 #ifndef MANDATORY_ASSIGNMENT_SHELL_STRING_H
 #define MANDATORY_ASSIGNMENT_SHELL_STRING_H
 
-typedef struct _string* String;
+#define MAX_STRING_LENGTH 32768
 
-String newString();
-String newStringInitialLength(int length);
-String newStringInitialText(char[] initialText);
-void destroyString();
+char* newString();
 
 #endif //MANDATORY_ASSIGNMENT_SHELL_STRING_H
