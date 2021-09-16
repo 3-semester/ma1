@@ -17,4 +17,12 @@
  */
 char* newString(unsigned long long length);
 
+/**
+ * Creates a new string the same length as the specified string and containing a copy of
+ * the its text.
+ * @param string the string to copy
+ * @return a new string containing the supplied text
+ */
+char* newStringFromString(char* string);
+
 #endif //MANDATORY_ASSIGNMENT_SHELL_STRING_H
