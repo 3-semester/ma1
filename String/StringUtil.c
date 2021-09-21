@@ -32,7 +32,7 @@ char* readLineFromStdin(){
 
 char* trim(char* string){
 	if(string == NULL) return string;
-	size_t length, startLength = strlen(string);
+	size_t length = strlen(string), startLength = length;
 	//remove trailing
 	while(isspace(string[length-1])) string[--length] = 0;
 	//remove leading
