@@ -13,16 +13,16 @@ void shell_loop();
 /**
  * @brief Read input from the command line and save it in args
  * 
- * @param args the variable to save arguments in
+ * @param string the variable to save arguments in
  */
-void shell_read(char** args);
+void shell_read(char* string);
 
 /**
  * @brief Parse the arguments 
  * 
- * @param args 
+ * @param string 
  */
-char** shell_parse(char** args);
+char** shell_parse(char* string);
 
 
 /**
