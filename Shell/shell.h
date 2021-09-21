@@ -7,7 +7,7 @@
  * @brief Start the shell loop
  *  Runs the shell loop until it gets cancelled.
  */
-void shell_loop(void);
+void shell_loop();
 
 
 /**

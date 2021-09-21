@@ -5,7 +5,7 @@
 
 int current_status;
 
-void shell_loop(void){
+void shell_loop(){
 	char** str;
 	
 	while(current_status){
@@ -13,7 +13,6 @@ void shell_loop(void){
         shell_execute(shell_parse(str));
 	}
 
-    return 1;
 }
 
 void shell_read(char** args){
