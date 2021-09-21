@@ -25,7 +25,7 @@ char* newStringFromString(char* string){
 }
 
 char readStringBuffer[MAX_STRING_LENGTH];
-char* readLineFromStdin(){
+char* readLineFromStdin(void){
 	fgets(readStringBuffer, sizeof(readStringBuffer), stdin);
 	return newStringFromString(readStringBuffer);
 }
