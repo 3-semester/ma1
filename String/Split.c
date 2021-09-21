@@ -5,13 +5,7 @@
 
 char**  splitter(char string[]){
     
-    char* stringArrayBuffer[50];
-    //clear bufferArray
-    int i = 0;
-    while(i < 50){
-        stringArrayBuffer[i] = NULL;
-        i++;
-    }
+    char* stringArrayBuffer[50] = {NULL};
 
     int arrIndex = 0;
     //read in first token
@@ -37,7 +31,8 @@ char**  splitter(char string[]){
 
     return stringArray;
 }
-int main(void){ 
+
+int main(void){
     char string[] = "hello hello hello";
     char** stringArr = splitter(string);
 
