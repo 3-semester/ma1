@@ -1,7 +1,8 @@
-#include "Shell/shell.h"
-#include "String/StringUtil.h"
+#include "shell.h"
+#include "../String/StringUtil.h"
 #include "unistd.h"
 #include "sys/types.h"
+#include <sys/wait.h>
 
 int current_status;
 
@@ -29,7 +30,7 @@ void shell_execute(char** args){
 	pid = fork();
 
 	if(pid != 0){
-		waitpid(-1, current_status);
+		waitpid("/stuff", -1, current_status);
 	}else{
 		execve("./Shell", args, 0);
 	}
