@@ -58,3 +58,11 @@ char** splitString(char* string, char* delim){
 	realloc(strings, sizeof(char*) * (i+1));
 	return strings;
 }
+
+void freeStringArray(char** stringArray){
+	char** strArr = stringArray;
+	while (*stringArray){
+		free(*stringArray)
+	}
+	free(strArr);
+}

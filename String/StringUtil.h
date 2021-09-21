@@ -41,9 +41,15 @@ char* trim(char* string);
 /**
  * Splits a string at every occurrence of the specified delimiter and returns each new substring.
  * @param string the string to split
- * @param delim the delimiter between each substring
+ * @param delim the delimiter between each substring, if NULL a single space is used
  * @return a new array of strings containing the found substrings and NULL as the final element
  */
 char** splitString(char* string, char* delim);
+
+/**
+ * Frees all the memory used by an array of strings, including the strings, where the final element is NULL.
+ * @param stringArray the array to free
+ */
+void freeStringArray(char** stringArray);
 
 #endif //MANDATORY_ASSIGNMENT_SHELL_STRING_H
