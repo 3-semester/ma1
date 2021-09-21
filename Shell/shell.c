@@ -13,7 +13,7 @@ void shell_loop(){
 	
 	while(current_status){
 		shell_read(&str);
-		args = shell_parse(str);
+		char** args = shell_parse(str);
         shell_execute(args);
         freeStringArray(args);
 	}
