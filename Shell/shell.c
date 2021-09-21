@@ -16,7 +16,7 @@ void shell_loop(void){
 }
 
 void shell_read(char** args){
-    args = readLineFromStdin();
+    *args = readLineFromStdin();
 }
 
 char** shell_parse(char** args){
