@@ -29,7 +29,7 @@ char* newStringFromString(char* string);
  * Reads a line from stdin and returns a new string with the read contents
  * @return a new string with the contents of the next line in stdin
  */
-char* readLineFromStdin();
+char* readLineFromStdin(void);
 
 /**
  * Trims trailing and leading whitespace from specified string and resizes it.
