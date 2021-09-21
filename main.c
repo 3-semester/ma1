@@ -4,10 +4,7 @@
 #include <stdbool.h>
 // waitpid()
 #include <sys/wait.h>
-
 #include "Shell/shell.h"
-
-
 
 int main(){
 	// spin up the shell
