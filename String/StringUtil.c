@@ -28,3 +28,6 @@ char* readLineFromStdin(){
 	fgets(readStringBuffer, sizeof(readStringBuffer), stdin);
 	return newStringFromString(readStringBuffer);
 }
+
+void trim(char* string){
+}
