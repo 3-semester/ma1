@@ -1,4 +1,4 @@
-#include "String/StringUtil.h";
+#include "String/StringUtil.h"
 
 void shell_loop(void){
 	char** str;
