@@ -3,6 +3,9 @@
 #include <unistd.h>
 #include <stdbool.h>
 
+// waitpid()
+#include <sys/wait.h>
+
 int main(){
 	while(true){
 		// read command from prompt
