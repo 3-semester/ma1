@@ -11,11 +11,9 @@ void shell_loop();
 
 
 /**
- * @brief Read input from the command line and save it in args
- * 
- * @param string the variable to save arguments in
+ * @brief Read input from the command line and returns it
  */
-void shell_read(char** string);
+char* shell_read();
 
 /**
  * @brief Parse the arguments 

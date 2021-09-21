@@ -9,19 +9,18 @@
 int current_status = 1;
 
 void shell_loop(){
-	char* str = malloc(sizeof (char) * MAX_STRING_LENGTH);
 	
 	while(current_status){
-		shell_read(&str);
-		char** args = shell_parse(str);
+		char* string = shell_read();
+		char** args = shell_parse(string);
         shell_execute(args);
         freeStringArray(args);
 	}
 
 }
 
-void shell_read(char** args){
-    *args = trim(readLineFromStdin());
+char* shell_read(){
+	return trim(readLineFromStdin());
 }
 
 char** shell_parse(char* string){
