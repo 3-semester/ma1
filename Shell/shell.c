@@ -1,3 +1,4 @@
+#include "Shell/shell.h"
 #include "String/StringUtil.h"
 #include "unistd.h"
 #include "sys/types.h"
