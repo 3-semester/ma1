@@ -14,6 +14,7 @@ void shell_loop(){
 		char* string = shell_read();
 		char** args = shell_parse(string);
         shell_execute(args);
+        free(string);
         freeStringArray(args);
 	}
 
