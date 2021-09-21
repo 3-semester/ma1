@@ -5,7 +5,7 @@
 #include "StringUtil.h"
 #include <stdlib.h>
 #include <string.h>
-
+#include <stdio.h>
 
 
 char* newString(unsigned long long length){
@@ -21,4 +21,10 @@ char* newStringFromString(char* string){
 	char* newString = newString(strlen(string));
 	strcpy(newString, string);
 	return newString;
+}
+
+char readStringBuffer[MAX_STRING_LENGTH];
+char* readLineFromStdin(){
+	fgets(readStringBuffer, sizeof(readStringBuffer), stdin);
+	return newStringFromString(readStringBuffer);
 }
