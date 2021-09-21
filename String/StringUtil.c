@@ -30,8 +30,8 @@ char* readLineFromStdin(){
 	return newStringFromString(readStringBuffer);
 }
 
-void trim(char* string){
-	if(string == NULL) return;
+char* trim(char* string){
+	if(string == NULL) return string;
 	size_t length, startLength = strlen(string);
 	//remove trailing
 	while(isspace(string[length-1])) string[--length] = 0;
@@ -43,4 +43,5 @@ void trim(char* string){
 	//Return any now unused memory to the OS
 	if (length != startLength) realloc(string, length * sizeof(char));
 	//Done :)
+	return string;
 }
