@@ -19,6 +19,7 @@ char**  splitter(char string[]){
     //continously read in tokens 
     while(token != NULL){
         stringArrayBuffer[arrIndex] = token;
+        printf("%s", stringArrayBuffer[arrIndex]);
         arrIndex++;
         char* token = strtok(string, " ");
     }
