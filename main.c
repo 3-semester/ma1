@@ -10,10 +10,8 @@
 
 
 int main(){
-	
 	// spin up the shell
 	shell_loop();
-
 	return 0;
 }
 
