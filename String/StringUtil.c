@@ -18,13 +18,16 @@ char* newString(unsigned long long length){
 
 char* newStringFromString(char* string){
 	if(string == NULL) return newString(0);
-	char* newString = newString(strlen(string));
-	strcpy(newString, string);
-	return newString;
+	char *newStr = newString(strlen(string));
+	strcpy(newStr, string);
+	return newStr;
 }
 
 char readStringBuffer[MAX_STRING_LENGTH];
 char* readLineFromStdin(){
 	fgets(readStringBuffer, sizeof(readStringBuffer), stdin);
 	return newStringFromString(readStringBuffer);
+}
+
+void trim(char* string){
 }

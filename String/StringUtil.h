@@ -29,6 +29,11 @@ char* newStringFromString(char* string);
  * Reads a line from stdin and returns a new string with the read contents
  * @return a new string with the contents of the next line in stdin
  */
-char* readLineFromStdin()
+char* readLineFromStdin();
+
+/**
+ * Trims trailing and leading whitespace from specified string and resizes it.
+ */
+void trim(char* string);
 
 #endif //MANDATORY_ASSIGNMENT_SHELL_STRING_H
