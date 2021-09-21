@@ -13,13 +13,13 @@ void shell_loop(){
 	
 	while(current_status){
 
-		shell_read(str);
+		shell_read(&str);
         shell_execute(shell_parse(str));
 	}
 
 }
 
-void shell_read(char* args){
+void shell_read(char** args){
     args = trim(readLineFromStdin());
 }
 
