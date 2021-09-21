@@ -7,29 +7,26 @@
 #include <sys/wait.h>
 
 int main(){
-	while(true){
-		// read command from prompt
-		//char inputStr[100];
-		//scanf("%s", inputStr);
+	
+	// spin up the shell
+	shell_loop();
 
-		// read_command(command, parameters);
-
-		int childPid = fork();
-
-		if(childPid < 0) {
-			printf("Error!");
-			return -1;
-		}
-
-		if(childPid != 0) {
-			//waitpid(-1, &status, 0);
-			printf("I am a parent with PID: %d", getpid());
-		}
-		else {
-			//execve(command, parameters, 0);
-			printf("I am a child with PID: %d", getpid());
-			exit(-1);
-		}
-	}
 	return 0;
+}
+
+
+
+void shell_loop(void){
+	char** string;
+	char** arguments;
+	
+	int current_status;
+
+	while(current_status){
+		// read arguments
+
+		// parse arguments
+
+		// execute
+	}
 }
