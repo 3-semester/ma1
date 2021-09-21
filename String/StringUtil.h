@@ -38,4 +38,12 @@ char* readLineFromStdin();
  */
 char* trim(char* string);
 
+/**
+ * Splits a string at every occurrence of the specified delimiter and returns each new substring.
+ * @param string the string to split
+ * @param delim the delimiter between each substring
+ * @return a new array of strings containing the found substrings
+ */
+char** splitString(char* string, char* delim);
+
 #endif //MANDATORY_ASSIGNMENT_SHELL_STRING_H

@@ -45,3 +45,16 @@ char* trim(char* string){
 	//Done :)
 	return string;
 }
+
+char** splitString(char* string, char* delim){
+	if (delim == NULL) delim = " ";
+	char** strings = malloc(500 * sizeof(char*));
+
+	*strings = strtok(string, delim);
+	int i = 0;
+	while (*(strings+i) != NULL){
+		*(strings + ++i) = strtok(NULL, delim);
+	}
+	realloc(strings, sizeof(char*) * (i+1));
+	return strings;
+}
