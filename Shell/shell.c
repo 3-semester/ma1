@@ -4,6 +4,7 @@
 #include "sys/types.h"
 #include <sys/wait.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 int current_status = 1;
 
@@ -19,12 +20,10 @@ void shell_loop(){
 }
 
 void shell_read(char* args){
-	printf("Reading string");
-    args = readLineFromStdin();
+    args = trim(readLineFromStdin());
 }
 
 char** shell_parse(char* string){
-	printf("Parsing string");
 	return splitString(string, NULL);
 }
 
@@ -33,11 +32,14 @@ void shell_execute(char** args){
 	pid_t pid;
 
 	pid = fork();
-	printf("%d", pid);
 	if(pid != 0){
 		waitpid(pid, &current_status, 0);
 	}else{
-		printf("Executing:  ");
-		execve(args[0], args, 0);
+		
+
+		if(execve(args[0], args, 0) == -1){
+			printf("Failed to execute");
+		}
+		exit(0);
 	}
 }
