@@ -5,6 +5,7 @@
 #include <sys/wait.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <errno.h> 
 
 int current_status = 1;
 
@@ -14,8 +15,8 @@ void shell_loop(){
 		char* string = shell_read();
 		char** args = shell_parse(string);
         shell_execute(args);
-        free(string);
-        freeStringArray(args);
+        //free(string);
+        //freeStringArray(args);
 	}
 
 }
@@ -39,7 +40,7 @@ void shell_execute(char** args){
 		
 
 		if(execve(args[0], args, 0) == -1){
-			printf("Failed to execute");
+			printf("No command found called %s - ERRNO: %d", args[0], errno);
 		}
 		exit(0);
 	}
