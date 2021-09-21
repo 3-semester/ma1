@@ -15,7 +15,7 @@ void shell_loop();
  * 
  * @param string the variable to save arguments in
  */
-void shell_read(char* string);
+void shell_read(char** string);
 
 /**
  * @brief Parse the arguments 
