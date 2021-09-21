@@ -2,9 +2,12 @@
 #include <stdio.h> 
 #include <unistd.h>
 #include <stdbool.h>
-
 // waitpid()
 #include <sys/wait.h>
+
+#include "Shell/shell.h"
+
+
 
 int main(){
 	
@@ -16,17 +19,4 @@ int main(){
 
 
 
-void shell_loop(void){
-	char** string;
-	char** arguments;
-	
-	int current_status;
 
-	while(current_status){
-		// read arguments
-
-		// parse arguments
-
-		// execute
-	}
-}
