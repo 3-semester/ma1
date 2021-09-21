@@ -4,7 +4,7 @@
 #include "sys/types.h"
 #include <sys/wait.h>
 
-int current_status;
+int current_status = 1;
 
 void shell_loop(){
 	char** str;
@@ -21,6 +21,7 @@ void shell_read(char** args){
 }
 
 char** shell_parse(char** args){
+return splitString(args, NULL);
 }
 
 void shell_execute(char** args){
@@ -30,14 +31,8 @@ void shell_execute(char** args){
 	pid = fork();
 
 	if(pid != 0){
-		waitpid("/stuff", -1, current_status);
+		waitpid(pid, -1, current_status);
 	}else{
-		execve("./Shell", args, 0);
+		execvp(args[0], args);
 	}
-
-
-	
-
-
-
 }
