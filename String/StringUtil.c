@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include <ctype.h>
 
 
 char* newString(unsigned long long length){
@@ -29,5 +30,18 @@ char* readLineFromStdin(){
 	return newStringFromString(readStringBuffer);
 }
 
-void trim(char* string){
+char* trim(char* string){
+	if(string == NULL) return string;
+	size_t length, startLength = strlen(string);
+	//remove trailing
+	while(isspace(string[length-1])) string[--length] = 0;
+	//remove leading
+	char *newStart = string;
+	while(newStart && isspace(*newStart)) newStart++, length--;
+	//Move string back to given pointer
+	if (newStart != string) memmove(string, newStart, length);
+	//Return any now unused memory to the OS
+	if (length != startLength) realloc(string, length * sizeof(char));
+	//Done :)
+	return string;
 }

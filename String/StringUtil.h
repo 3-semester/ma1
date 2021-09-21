@@ -33,7 +33,9 @@ char* readLineFromStdin();
 
 /**
  * Trims trailing and leading whitespace from specified string and resizes it.
+ * @param string the string to trim
+ * @return the passed pointer
  */
-void trim(char* string);
+char* trim(char* string);
 
 #endif //MANDATORY_ASSIGNMENT_SHELL_STRING_H
