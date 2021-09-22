@@ -29,3 +29,9 @@ This allows the shell to run any program referenced in PATH.
 Pipe is used for giving the output of a process to the input of another process. 
 
 ###  Dup2
+
+# Write about this and then we done! 🙂 🕗 
+- Dup2
+- I/O-redirection
+- Program environment
+- Background program execution. 
