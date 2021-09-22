@@ -10,8 +10,6 @@
 int current_status = 1;
 
 void shell_loop(){
-	
-
 	/*
 	 * Keep taking commands until the program is exited.
 	 */	
