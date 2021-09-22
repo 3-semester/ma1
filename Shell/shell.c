@@ -11,6 +11,10 @@ int current_status = 1;
 
 void shell_loop(){
 	
+
+	/*
+	 * Keep taking commands until the program is exited.
+	 */	
 	while(current_status){
 		char* string = shell_read();
 		char** args = shell_parse(string);
@@ -40,7 +44,7 @@ void shell_execute(char** args){
 		
 
 		if(execve(args[0], args, 0) == -1){
-			printf("No command found called %s - ERRNO: %d", args[0], errno);
+			fprintf(stderr, "No command found called %s - ERRNO: %d", args[0], errno);
 		}
 		exit(0);
 	}
