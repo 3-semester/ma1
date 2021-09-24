@@ -6,15 +6,38 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h> 
+#include <stdbool.h>
+#include "../Pipe/dualExec.h"
+#include <string.h>
 
 int current_status = 1;
 
 void shell_loop(){
 	
 	while(current_status){
+		printf("Shell: ");
 		char* string = shell_read();
-		char** args = shell_parse(string);
-        shell_execute(args);
+		
+		//check if string contains pipe
+		if(doesStringContainPipe(newStringFromString(string)) == 1){
+
+			//split up into two strings
+			char** argset1;
+    		char** argset2;
+			shelldoubleparse(string, &argset1, &argset2);
+
+			//print so you can see args
+			printf("\narg sets: #%s#%s# and #%s#%s#\n", argset1[0], argset1[1], argset2[0], argset2[1]);
+			fflush(stdout);
+
+			//execute
+			executeTwoProcesses(argset1, argset2);
+
+		}else{//if it doesnt contain pipe run single program
+			char** args = shell_parse(string);
+			shell_execute(args);
+		}
+
         //free(string);
         //freeStringArray(args);
 	}
