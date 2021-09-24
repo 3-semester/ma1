@@ -13,7 +13,9 @@
 int current_status = 1;
 
 void shell_loop(){
-	
+	/*
+	 * Keep taking commands until the program is exited.
+	 */	
 	while(current_status){
 		printf("Shell: ");
 		char* string = shell_read();
@@ -40,6 +42,7 @@ void shell_loop(){
 
         //free(string);
         //freeStringArray(args);
+
 	}
 
 }
@@ -60,10 +63,8 @@ void shell_execute(char** args){
 	if(pid != 0){
 		waitpid(pid, &current_status, 0);
 	}else{
-		
-
-		if(execve(args[0], args, 0) == -1){
-			printf("No command found called %s - ERRNO: %d", args[0], errno);
+		if(execvp(args[0], args) == -1){
+			fprintf(stderr, "No command found called %s - ERRNO: %d", args[0], errno);
 		}
 		exit(0);
 	}
