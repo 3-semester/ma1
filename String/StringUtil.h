@@ -8,6 +8,8 @@
 /**
  * The maximal length of a string in characters
  */
+#include <stdbool.h>
+
 #define MAX_STRING_LENGTH 32768
 
 /**
@@ -51,5 +53,13 @@ char** splitString(char* string, char* delim);
  * @param stringArray the array to free
  */
 void freeStringArray(char** stringArray);
+
+/**
+ * Returns whether the specified null-terminated string contains the specified character
+ * @param string the null-terminated string to search
+ * @param character the character to find
+ * @return true if the character is contained in the string, otherwise false
+ */
+bool stringContainsCharacter(char* string, char character);
 
 #endif //MANDATORY_ASSIGNMENT_SHELL_STRING_H

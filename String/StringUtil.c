@@ -39,14 +39,15 @@ char* trim(char* string){
 	char *newStart = string;
 	while(newStart && isspace(*newStart)) newStart++, length--;
 	//Move string back to given pointer
-	if (newStart != string) memmove(string, newStart, length);
+	if (newStart != string) memmove(string, newStart, length+1);
 	//Return any now unused memory to the OS
-	if (length != startLength) realloc(string, length * sizeof(char));
+	//if (length != startLength) realloc(string, (length+1) * sizeof(char));
 	//Done :)
 	return string;
 }
 
 char** splitString(char* string, char* delim){
+	if (string == NULL) return NULL;
 	if (delim == NULL) delim = " ";
 	char** strings = malloc(500 * sizeof(char*));
 
@@ -61,8 +62,13 @@ char** splitString(char* string, char* delim){
 
 void freeStringArray(char** stringArray){
 	char** strArr = stringArray;
-	while (*stringArray){
+	while (stringArray){
 		free(*stringArray);
+		stringArray++;
 	}
 	free(strArr);
+}
+
+bool stringContainsCharacter(char* string, char character){
+	return strchr(string, character) != NULL;
 }
