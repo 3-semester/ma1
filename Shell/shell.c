@@ -41,9 +41,7 @@ void shell_loop(){
 			executeTwoProcesses(argset1, argset2);
 		}
 
-		//free(userCommand);
 		//freeStringArray(args);
-
 	}
 
 }
