@@ -15,21 +15,23 @@ int current_status = 1;
 void shell_loop(){
 	/*
 	 * Keep taking commands until the program is exited.
-	 */	
+	 */
+	char* userCommand = NULL;
 	while(current_status){
 		printf("Shell: ");
-		char* string = shell_read();
-		
-		//check if string contains pipe
-		if (!stringContainsCharacter(string, '|')) {//if it doesnt contain pipe run single program
-			char **args = shell_parse(string);
+		if (userCommand != NULL) free(userCommand);
+		userCommand = shell_read();
+
+		//check if userCommand contains pipe
+		if (!stringContainsCharacter(userCommand, '|')) {//if it doesnt contain pipe run single program
+			char **args = shell_parse(userCommand);
 			shell_execute(args);
 			continue;
 		} else {
 			//split up into two strings
 			char **argset1;
 			char **argset2;
-			shelldoubleparse(string, &argset1, &argset2);
+			shelldoubleparse(userCommand, &argset1, &argset2);
 
 			//print so you can see args
 			printf("\narg sets: #%s#%s# and #%s#%s#\n", argset1[0], argset1[1], argset2[0], argset2[1]);
@@ -39,7 +41,7 @@ void shell_loop(){
 			executeTwoProcesses(argset1, argset2);
 		}
 
-		//free(string);
+		//free(userCommand);
 		//freeStringArray(args);
 
 	}
