@@ -39,19 +39,13 @@ char** getArgumentsFromString(char* string){
     return splitString(string, NULL);
 }
 
-char** splitStringInHalf(char* string){
-    char** stringHalves = (char**)malloc(2*sizeof(char*));
-    *(stringHalves) = strtok(string, "|");
-    *(stringHalves+1) = strtok(NULL, "|");
-    return stringHalves;
-}
 
 //vi giver funktionen en string og addressen til to arrays
 //hvilket er en pointer(*) til en pointer pointer(**)
 //indholdet skrives tilbage i de pointer pointers
 void shelldoubleparse(char* String, char*** argSt1, char*** argSt2){
     //split string into two strings
-    char** retval = splitStringInHalf(newStringFromString(String));
+    char** retval = splitString(newStringFromString(String), "|");
     //printf("\nafter splitstring");
     fflush(stdout);
 
