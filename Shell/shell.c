@@ -26,24 +26,23 @@ void shell_loop(){
 		if (!stringContainsCharacter(userCommand, '|')) {//if it doesnt contain pipe run single program
 			char **args = shell_parse(userCommand);
 			shell_execute(args);
+			freeStringArray(args);
 			continue;
-		} else {
-			//split up into two strings
-			char **argset1;
-			char **argset2;
-			shelldoubleparse(userCommand, &argset1, &argset2);
-
-			//print so you can see args
-			printf("\narg sets: #%s#%s# and #%s#%s#\n", argset1[0], argset1[1], argset2[0], argset2[1]);
-			fflush(stdout);
-
-			//execute
-			executeTwoProcesses(argset1, argset2);
 		}
+		//split up into two strings
+		char **argset1;
+		char **argset2;
+		shelldoubleparse(userCommand, &argset1, &argset2);
 
-		//freeStringArray(args);
+		//print so you can see args
+		printf("\narg sets: #%s#%s# and #%s#%s#\n", argset1[0], argset1[1], argset2[0], argset2[1]);
+		fflush(stdout);
+
+		//execute
+		executeTwoProcesses(argset1, argset2);
+		freeStringArray(argset1);
+		freeStringArray(argset2);
 	}
-
 }
 
 char* shell_read(){
