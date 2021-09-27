@@ -79,3 +79,21 @@ int* createPipes(int numPipes){
 	}
 	return pipes;
 }
+
+void shell_execute_ProposedAlternative(int numberOfArgs, char*** argss){
+	pid_t pid;
+	int* pipes = createPipes(numberOfArgs - 1);
+	for (int i = 0; i < numberOfArgs; ++i) {
+		pid = fork();
+
+		if (pid == 0){ //In child
+			if (i != 0) dup2(*(pipes + 2 * (i - 1)), STDIN_FILENO); //Set stdin to read from pipe
+			if (i < numberOfArgs - 1) dup2(*(pipes + (i * 2) + 1), STDOUT_FILENO); //Set stdout to write to pipe
+			if(execvp(argss[i][0], argss[i]) == -1){
+				fprintf(stderr, "No command found called %s - ERRNO: %d", argss[i][0], errno);
+				exit(0);
+			}
+		}
+	}
+	waitpid(pid, &current_status, 0); //Wait for the last process created to finish
+}

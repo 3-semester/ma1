@@ -30,6 +30,13 @@ char** shell_parse(char* string);
  */
 void shell_execute(char** args);
 
+/**
+ * Executes a number of programs or inbuilt functions piping them together.
+ * @param numberOfArgs the number of different arguments, i.e. the number of programs to run
+ * @param argss an array of the arguments for the programs.
+ */
+void shell_execute_ProposedAlternative(int numberOfArgs, char*** argss);
+
 
 
 
