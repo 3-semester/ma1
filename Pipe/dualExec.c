@@ -17,28 +17,22 @@ void executeTwoProcesses(char** argset1, char** argset2){
     pipe(fd);
 
     int pid1 = fork();//create first child
-    int pid2;
 
-    if(pid1 != 0) {//enter parent
+	if (pid1 == 0) { //first child run process
+		//connect write end to stdout
+		dup2(fd[1], STDOUT_FILENO);
+		execvp(argset1[0], argset1);
+	}
 
-        pid2 = fork();//create second child
+	//enter parent
+	int pid2 = fork();//create second child
+	if (pid2 == 0) {//second child run process
+		//connect read end to stdin
+		dup2(fd[0], STDIN_FILENO);
+		execvp(argset2[0], argset2);
+	}
 
-        if(pid2 == 0){//second child run process
-
-            //connect read end to stdin
-            dup2(fd[0], STDIN_FILENO);
-            execvp(argset2[0], argset2);
-        }
-
-        wait(NULL);
-
-    }else{ //first child run process
-        //connect write end to stdout
-        dup2(fd[1], STDOUT_FILENO);
-        execvp(argset1[0], argset1);
-
-    }
-    
+	wait(NULL);
 }
 
 char** getArgumentsFromString(char* string){
@@ -46,14 +40,9 @@ char** getArgumentsFromString(char* string){
 }
 
 char** splitStringInHalf(char* string){
-    //strcpy(string, string);
-    //printf("in func\n");
     char** stringHalves = (char**)malloc(2*sizeof(char*));
-    //printf("after malloc\n");
     *(stringHalves) = strtok(string, "|");
-    //printf("after strtok1\n");
     *(stringHalves+1) = strtok(NULL, "|");
-    //printf("after strtok2\n");
     return stringHalves;
 }
 
@@ -82,55 +71,7 @@ void shelldoubleparse(char* String, char*** argSt1, char*** argSt2){
     //deallocate strings
     //free(t1);
     //free(t2);
-
-
 }
 
-/*
-//simple test in main
-int main(void){
-
-//arrays to test whether it can pipe programs
-    
-    //char* test = "./testprint | ./testread";
-
-    //char** retval = splitStringInHalf(newStringFromString(test));
-    //char* t1 = *(retval);
-    //char* t2 = *(retval+1);
-    //t1 = newStringFromString(t1);
-    //t2 = newStringFromString(t2); 
-    //TODO for some reason last letter in func get duplicated if it has space in front of it
-
-    //char** arg1 = splitString(t1, " ");
-    //char** arg2 = splitString(t2, " ");
-    //strtok removes delimiters at beginning and end, no need to trim
-
-    //does string contain pipe?
-    //printf("string contains pipe: %d\n", (int)doesStringContainPipe(test))
-    
-
-    char* test2 = "./testprint | ./testread";
-    char** arg1;
-    char** arg2;
-
-    shelldoubleparse(test2, &arg1, &arg1);
-
-
-
-    printf("arg sets: #%s#%s# and #%s#%s#\n", arg1[0], arg1[1], arg2[0], arg2[1]);
-
-    executeTwoProcesses(arg1, arg2);
-
-
-
-
-    //char* arg1[] = {"./testprint", NULL};
-    //char* arg2[] = {"./testread", NULL};
-
-    //executeTwoProcesses(arg1, arg2);
-  
-    return 0;
-}
-*/
 
 
