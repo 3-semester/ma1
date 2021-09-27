@@ -21,11 +21,14 @@ void shell_loop(){
 		char* string = shell_read();
 		
 		//check if string contains pipe
-		if(doesStringContainPipe(newStringFromString(string)) == 1){
-
+		if (!doesStringContainPipe(newStringFromString(string))) {//if it doesnt contain pipe run single program
+			char **args = shell_parse(string);
+			shell_execute(args);
+			continue;
+		} else {
 			//split up into two strings
-			char** argset1;
-    		char** argset2;
+			char **argset1;
+			char **argset2;
 			shelldoubleparse(string, &argset1, &argset2);
 
 			//print so you can see args
@@ -34,14 +37,10 @@ void shell_loop(){
 
 			//execute
 			executeTwoProcesses(argset1, argset2);
-
-		}else{//if it doesnt contain pipe run single program
-			char** args = shell_parse(string);
-			shell_execute(args);
 		}
 
-        //free(string);
-        //freeStringArray(args);
+		//free(string);
+		//freeStringArray(args);
 
 	}
 
