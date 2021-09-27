@@ -65,3 +65,17 @@ void shell_execute(char** args){
 	}
 	exit(0);
 }
+
+/**
+ * Creates a specified number of pipes and returns them back to back in an int array.
+ * @param numPipes the number of pipes to create
+ * @return an array of pipes
+ */
+int* createPipes(int numPipes){
+	if (numPipes == 0) return NULL;
+	int pipes = calloc(numPipes, sizeof(int)*2);
+	for (int i = 0; i < numPipes; i += 2) {
+		pipe((pipes+i));
+	}
+	return pipes;
+}
