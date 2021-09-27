@@ -21,7 +21,7 @@ void shell_loop(){
 		char* string = shell_read();
 		
 		//check if string contains pipe
-		if (!doesStringContainPipe(newStringFromString(string))) {//if it doesnt contain pipe run single program
+		if (!stringContainsCharacter(newStringFromString(string), '|')) {//if it doesnt contain pipe run single program
 			char **args = shell_parse(string);
 			shell_execute(args);
 			continue;
