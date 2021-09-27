@@ -55,16 +55,14 @@ char** shell_parse(char* string){
 }
 
 void shell_execute(char** args){
-	
-	pid_t pid;
-
-	pid = fork();
+	pid_t pid = fork();
 	if(pid != 0){
 		waitpid(pid, &current_status, 0);
-	}else{
-		if(execvp(args[0], args) == -1){
-			fprintf(stderr, "No command found called %s - ERRNO: %d", args[0], errno);
-		}
-		exit(0);
+		return;
 	}
+	//In child process from here on
+	if(execvp(args[0], args) == -1){
+		fprintf(stderr, "No command found called %s - ERRNO: %d", args[0], errno);
+	}
+	exit(0);
 }
