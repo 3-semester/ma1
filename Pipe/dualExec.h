@@ -10,7 +10,7 @@ char** getArgumentsFromString(char* string);
 
 
 //checks whether a string contains a '|' symbol
-int doesStringContainPipe(char* string);
+bool doesStringContainPipe(char* string);
 
 
 

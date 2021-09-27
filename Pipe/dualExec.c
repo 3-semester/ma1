@@ -7,6 +7,7 @@
 #include <errno.h> 
 #include "dualExec.h"
 #include <string.h>
+#include <stdbool.h>
 
 void executeTwoProcesses(char** argset1, char** argset2){
     //TODO get function that split args into two sets
@@ -43,13 +44,9 @@ void executeTwoProcesses(char** argset1, char** argset2){
 char** getArgumentsFromString(char* string){
     return splitString(string, NULL);
 }
-int doesStringContainPipe(char* string){
-    if (strchr(string, '|')!= NULL) {//true
-        return 1;
-    }else{//false
-        return 0;
-    }
-
+bool doesStringContainPipe(char* string){
+	if (strchr(string, '|')!= NULL) return true;
+	return false;
 }
 char** splitStringInHalf(char* string){
     //strcpy(string, string);
