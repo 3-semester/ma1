@@ -52,6 +52,28 @@ void shell_loop(){
 	}
 }
 
+
+void shell_loop_ProposedAlternative(){
+	/*
+	 * Keep taking commands until the program is exited.
+	 */
+	while(current_status){
+		printf("Shell: ");
+
+		char* userCommand = shell_read();
+		char*** argss = shell_parse_ProposedAlternative(userCommand);
+		int numberOfArgs = 0;
+		while (argss[numberOfArgs]) numberOfArgs++;
+		shell_execute_ProposedAlternative(numberOfArgs, argss);
+
+		free(userCommand);
+		for (int i = 0; argss[i] != NULL; ++i) {
+			freeStringArray(argss[i]);
+		}
+		free(argss);
+	}
+}
+
 char* shell_read(){
 	return trim(readLineFromStdin());
 }
@@ -69,7 +91,7 @@ char*** shell_parse_ProposedAlternative(char* userCommand){
 		argss[numberOfCommands] = splitString(trim(commands[numberOfCommands]), NULL);
 		numberOfCommands++;
 	}
-	recalloc(argss, numberOfCommands, sizeof(char**));
+	_recalloc(argss, numberOfCommands, sizeof(char**));
 	return argss;
 }
 

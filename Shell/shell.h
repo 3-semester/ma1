@@ -9,6 +9,9 @@
  */
 void shell_loop();
 
+/**
+ * Runs the shell loop until it gets cancelled.
+ */
 void shell_loop_ProposedAlternative();
 
 /**
