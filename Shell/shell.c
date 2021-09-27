@@ -10,6 +10,13 @@
 #include "../Pipe/dualExec.h"
 #include <string.h>
 
+/**
+ * Creates a specified number of pipes and returns them back to back in an int array.
+ * @param numPipes the number of pipes to create
+ * @return an array of pipes
+ */
+int* createPipes(int numPipes);
+
 int current_status = 1;
 
 void shell_loop(){
@@ -53,6 +60,19 @@ char** shell_parse(char* string){
 	return splitString(string, NULL);
 }
 
+char*** shell_parse_ProposedAlternative(char* userCommand){
+	char*** argss = calloc(500, sizeof(char**));
+
+	char** commands = (char***) splitString(userCommand, "|");
+	int numberOfCommands = 0;
+	while (commands[numberOfCommands] != NULL) {
+		argss[numberOfCommands] = splitString(trim(commands[numberOfCommands]), NULL);
+		numberOfCommands++;
+	}
+	recalloc(argss, numberOfCommands, sizeof(char**));
+	return argss;
+}
+
 void shell_execute(char** args){
 	pid_t pid = fork();
 	if(pid != 0){
@@ -64,20 +84,6 @@ void shell_execute(char** args){
 		fprintf(stderr, "No command found called %s - ERRNO: %d", args[0], errno);
 	}
 	exit(0);
-}
-
-/**
- * Creates a specified number of pipes and returns them back to back in an int array.
- * @param numPipes the number of pipes to create
- * @return an array of pipes
- */
-int* createPipes(int numPipes){
-	if (numPipes == 0) return NULL;
-	int pipes = calloc(numPipes, sizeof(int)*2);
-	for (int i = 0; i < numPipes; i += 2) {
-		pipe((pipes+i));
-	}
-	return pipes;
 }
 
 void shell_execute_ProposedAlternative(int numberOfArgs, char*** argss){
@@ -96,4 +102,13 @@ void shell_execute_ProposedAlternative(int numberOfArgs, char*** argss){
 		}
 	}
 	waitpid(pid, &current_status, 0); //Wait for the last process created to finish
+}
+
+int* createPipes(int numPipes){
+	if (numPipes == 0) return NULL;
+	int pipes = calloc(numPipes, sizeof(int)*2);
+	for (int i = 0; i < numPipes; i += 2) {
+		pipe((pipes+i));
+	}
+	return pipes;
 }
