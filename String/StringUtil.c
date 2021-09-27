@@ -47,6 +47,7 @@ char* trim(char* string){
 }
 
 char** splitString(char* string, char* delim){
+	if (string == NULL) return NULL;
 	if (delim == NULL) delim = " ";
 	char** strings = malloc(500 * sizeof(char*));
 
