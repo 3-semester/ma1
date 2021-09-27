@@ -38,8 +38,8 @@ void shell_execute(char** args){
 		waitpid(pid, &current_status, 0);
 	}else{
 		if(execvp(args[0], args) == -1){
-			fprintf(stderr, "No command found called %s - ERRNO: %d", args[0], errno);
+			fprintf(stderr, "No command found called %s - ERRNO: %d - Status: %d", args[0], errno, current_status);
 		}
-		exit(0);
+		//exit(0);
 	}
 }
