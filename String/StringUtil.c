@@ -67,3 +67,7 @@ void freeStringArray(char** stringArray){
 	}
 	free(strArr);
 }
+
+bool stringContainsCharacter(char* string, char character){
+	return strchr(string, character) != NULL;
+}
