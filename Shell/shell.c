@@ -86,8 +86,8 @@ void shell_execute(int numberOfArgs, char*** argss){
 int* createPipes(int numPipes){
 	if (numPipes == 0) return NULL;
 	int pipes = calloc(numPipes, sizeof(int)*2);
-	for (int i = 0; i < numPipes; i += 2) {
-		pipe((pipes+i));
+	for (int i = 0; i < numPipes; i += 1) {
+		pipe((pipes+(i*2)));
 	}
 	return pipes;
 }
