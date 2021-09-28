@@ -30,6 +30,19 @@ Pipe is used for giving the output of a process to the input of another process.
 
 ###  Dup2
 Files have integer identifiers referred to as File descriptors. These are unique to each file and are used when reading and writing to files. What dup2 does is it takes two file descriptors as input and modifies the second filedescriptor to be identical to the first. What this achieves is that when you attempt to write using the second filedescriptor you will end up writing to the file associated with the first file descriptor. This is used in our piping functionality to connect the stdin and stout of two processes using pipes; this works since stdin and stdout are also filedescriptors.
+
+### I/O- redirection
+3 standard streams
+standard input (stdin); The stdin stream is numbered as stdin (0). The bash shell takes input from stdin. keyboard is used as input
+standard output (stdout); The stdout stream is numbered as stdout (1). The bash shell sends output to stdout. Outout goes to display
+standard error (stderr); The stderr stream is numbered as stderr(2). The bash shell sends error message to stderr. Error message goes to display
+
+### Program environment
+An integrated development environment (IDE) is used VS code
+
+### Background program execution
+The background process usually is a child process for processing a computing task. After creation, the child process will run on its own, performing the task indenpendent of the control process, freeing the control process of performing that task
+
 # Write about this and then we done! 🙂 🕗 
 - I/O-redirection
 - Program environment
