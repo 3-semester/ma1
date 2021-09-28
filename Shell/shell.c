@@ -132,7 +132,6 @@ void shell_execute_ProposedAlternative(int numberOfArgs, char*** argss){
 		}
 	}
 	waitpid(pid, &current_status, 0); //Wait for the last process created to finish
-	fflush(stdout);
 }
 
 int* createPipes(int numPipes){
