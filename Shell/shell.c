@@ -53,7 +53,7 @@ char* shell_read(){
 char*** shell_parse(char* userCommand){
 	char*** argss = calloc(500, sizeof(char**));
 
-	char** commands = (char***) splitString(userCommand, "|");
+	char** commands = splitString(userCommand, "|");
 	//Todo: check for redirection
 	int numberOfCommands = 0;
 	while (commands[numberOfCommands] != NULL) {
