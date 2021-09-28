@@ -29,7 +29,7 @@ void shell_loop(){
 	/*
 	 * Keep taking commands until the program is exited.
 	 */
-	while(current_status){
+	while(true){
 		printf("Shell: ");
 
 		char* userCommand = shell_read();
@@ -37,13 +37,13 @@ void shell_loop(){
 		int numberOfArgs = 0;
 		while (argss[numberOfArgs]) numberOfArgs++;
 		shell_execute(numberOfArgs, argss);
-/*
-		free(userCommand);
+
+		//free(userCommand);
 		for (int i = 0; argss[i] != NULL; ++i) {
 			freeStringArray(argss[i]);
 		}
 		free(argss);
-		*/
+
 	}
 }
 
@@ -55,6 +55,7 @@ char*** shell_parse(char* userCommand){
 	char*** argss = calloc(500, sizeof(char**));
 
 	char** commands = (char***) splitString(userCommand, "|");
+	//Todo: check for redirection
 	int numberOfCommands = 0;
 	while (commands[numberOfCommands] != NULL) {
 		argss[numberOfCommands] = splitString(trim(commands[numberOfCommands]), NULL);
