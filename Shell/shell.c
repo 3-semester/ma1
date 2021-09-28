@@ -91,7 +91,7 @@ char*** shell_parse_ProposedAlternative(char* userCommand){
 		argss[numberOfCommands] = splitString(trim(commands[numberOfCommands]), NULL);
 		numberOfCommands++;
 	}
-	realloc(argss, numberOfCommands * sizeof(char**));
+	realloc(argss, (numberOfCommands + 1) * sizeof(char**));
 	return argss;
 }
 
