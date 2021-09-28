@@ -11,6 +11,10 @@
 #include <stdbool.h>
 
 #define MAX_STRING_LENGTH 32768
+const char pipeString[] = "|";
+const char redirectOutputString[] = ">";
+const char redirectInputString[] = "<";
+
 
 /**
  * Allocated a new string and returns it or NULL if length is greater than MAX_STRING_LENGTH
