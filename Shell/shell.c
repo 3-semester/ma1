@@ -35,10 +35,10 @@ void shell_loop(){
 		printf("Shell: ");
 
 		char* userCommand = shell_read();
-		char*** argss = shell_parse_ProposedAlternative(userCommand);
+		char*** argss = shell_parse(userCommand);
 		int numberOfArgs = 0;
 		while (argss[numberOfArgs]) numberOfArgs++;
-		shell_execute_ProposedAlternative(numberOfArgs, argss);
+		shell_execute(numberOfArgs, argss);
 /*
 		free(userCommand);
 		for (int i = 0; argss[i] != NULL; ++i) {
