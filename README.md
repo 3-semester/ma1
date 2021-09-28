@@ -21,7 +21,7 @@ The UNIX kernel has a range of so called 'System Calls', that can be called from
 ###  Fork
 Fork creates an exact copy of the calling parent process and then gives it a unique process id (PID)
 ###  Wait
-The Wait system calls will suspend a process until its child process is terminated. 
+The Wait system calls will suspend a process until its child process is terminated. Depending on the specific version of the wait function you used you can wait on a child with a specific PID or just wait for the first one. You can also receive the exit status of the child by passing the adresss of a variable to receive it in.
 ###  Exec
 Exec is used for executing a program on a process. In C there are different versions of this. This shell uses `excevp`, which specifies that the PATH environment variable shall be passed on to the program.
 This allows the shell to run any program referenced in PATH.
