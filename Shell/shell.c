@@ -17,6 +17,14 @@
  */
 int* createPipes(int numPipes);
 
+/**
+ * Connects up the correct pipes in the specified array of pipes to stdin and stdout of this process
+ * @param pipes an array of pipes
+ * @param numberOfPipes the length of the pipes array
+ * @param processNumber the 0-indexed position of this process in the sequence of piped processed
+ */
+void connectPipes(int* pipes, int numberOfPipes, int processNumber);
+
 int current_status = 1;
 
 void shell_loop(){
@@ -65,12 +73,13 @@ void shell_loop_ProposedAlternative(){
 		int numberOfArgs = 0;
 		while (argss[numberOfArgs]) numberOfArgs++;
 		shell_execute_ProposedAlternative(numberOfArgs, argss);
-
+/*
 		free(userCommand);
 		for (int i = 0; argss[i] != NULL; ++i) {
 			freeStringArray(argss[i]);
 		}
 		free(argss);
+		*/
 	}
 }
 
@@ -115,8 +124,7 @@ void shell_execute_ProposedAlternative(int numberOfArgs, char*** argss){
 		pid = fork();
 
 		if (pid == 0){ //In child
-			if (i != 0) dup2(*(pipes + 2 * (i - 1)), STDIN_FILENO); //Set stdin to read from pipe
-			if (i < numberOfArgs - 1) dup2(*(pipes + (i * 2) + 1), STDOUT_FILENO); //Set stdout to write to pipe
+			connectPipes(pipes, numberOfArgs - 1, i);
 			if(execvp(argss[i][0], argss[i]) == -1){
 				fprintf(stderr, "No command found called %s - ERRNO: %d", argss[i][0], errno);
 				exit(0);
@@ -133,4 +141,10 @@ int* createPipes(int numPipes){
 		pipe((pipes+i));
 	}
 	return pipes;
+}
+
+void connectPipes(int* pipes, int numberOfPipes, int processNumber){
+	if (pipes == NULL || processNumber > numberOfPipes) return;
+	if (processNumber != 0) dup2(*(pipes + 2 * (processNumber - 1)), STDIN_FILENO); //Set stdin to read from pipe
+	if (processNumber < numberOfPipes) dup2(*(pipes + (processNumber * 2) + 1), STDOUT_FILENO); //Set stdout to write to pipe
 }
