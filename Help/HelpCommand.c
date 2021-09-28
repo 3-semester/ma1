@@ -7,6 +7,6 @@
 #include <string.h>
 
 void Help() {
-    printf("\nThis is the help function");
+    //printf("\nThis is the help function");
 }
 
