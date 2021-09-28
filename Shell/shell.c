@@ -29,7 +29,7 @@ void shell_loop(){
 	/*
 	 * Keep taking commands until the program is exited.
 	 */
-	while(current_status){
+	while(true){
 		printf("Shell: ");
 
 		char* userCommand = shell_read();
