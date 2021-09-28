@@ -61,11 +61,8 @@ char** splitString(char* string, char* delim){
 }
 
 void freeStringArray(char** stringArray){
-	char** strArr = stringArray;
-	while (stringArray){
-		free(*stringArray);
-		stringArray++;
-	}
+	char** strArr = stringArray--;
+	while (*(++stringArray)) free(*stringArray);
 	free(strArr);
 }
 
