@@ -7,8 +7,6 @@
 #include <stdlib.h>
 #include <errno.h> 
 #include <stdbool.h>
-#include "../Pipe/dualExec.h"
-#include <string.h>
 
 /**
  * Creates a specified number of pipes and returns them back to back in an int array.
@@ -85,9 +83,9 @@ void shell_execute(int numberOfArgs, char*** argss){
 
 int* createPipes(int numPipes){
 	if (numPipes == 0) return NULL;
-	int pipes = calloc(numPipes, sizeof(int)*2);
-	for (int i = 0; i < numPipes; i += 2) {
-		pipe((pipes+i));
+	int *pipes = calloc(numPipes, sizeof(int)*2);
+	for (int i = 0; i < numPipes; i++) {
+		pipe((pipes+(i*2)));
 	}
 	return pipes;
 }

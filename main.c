@@ -1,10 +1,4 @@
-#include <stdlib.h> 
-#include <stdio.h> 
-#include <unistd.h>
-#include <stdbool.h>
-#include <sys/wait.h>
 #include "Shell/shell.h"
-
 
 /**
  *	This is the first thing that runs when this program is started
