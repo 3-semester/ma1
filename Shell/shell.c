@@ -17,6 +17,14 @@
  */
 int* createPipes(int numPipes);
 
+/**
+ * Connects up the correct pipes in the specified array of pipes to stdin and stdout of this process
+ * @param pipes an array of pipes
+ * @param numberOfPipes the length of the pipes array
+ * @param processNumber the 0-indexed position of this process in the sequence of piped processed
+ */
+void connectPipes(int* pipes, int numberOfPipes, int processNumber);
+
 int current_status = 1;
 
 void shell_loop(){
@@ -133,4 +141,10 @@ int* createPipes(int numPipes){
 		pipe((pipes+i));
 	}
 	return pipes;
+}
+
+void connectPipes(int* pipes, int numberOfPipes, int processNumber){
+	if (pipes == NULL || processNumber > numberOfPipes) return;
+	if (processNumber != 0) dup2(*(pipes + 2 * (processNumber - 1)), STDIN_FILENO); //Set stdin to read from pipe
+	if (processNumber < numberOfPipes) dup2(*(pipes + (processNumber * 2) + 1), STDOUT_FILENO); //Set stdout to write to pipe
 }
