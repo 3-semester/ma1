@@ -38,7 +38,6 @@ void shell_loop(){
 		while (argss[numberOfArgs]) numberOfArgs++;
 		shell_execute(numberOfArgs, argss);
 
-		//free(userCommand);
 		for (int i = 0; argss[i] != NULL; ++i) {
 			freeStringArray(argss[i]);
 		}
