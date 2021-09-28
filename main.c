@@ -11,7 +11,7 @@
  */
 int main(){
 	// spin up the shell
-	shell_loop();
+	shell_loop_ProposedAlternative();
 	return 0;
 }
 
