@@ -29,7 +29,7 @@ This allows the shell to run any program referenced in PATH.
 Pipe is used for giving the output of a process to the input of another process. 
 
 ###  Dup2
-
+Files have integer identifiers referred to as File descriptors. These are unique to each file and are used when reading and writing to files. What dup2 does is it takes two file descriptors as input and modifies the second filedescriptor to be identical to the first. What this achieves is that when you attempt to write using the second filedescriptor you will end up writing to the file associated with the first file descriptor. This is used in our piping functionality to connect the stdin and stout of two processes using pipes; this works since stdin and stdout are also filedescriptors.
 # Write about this and then we done! 🙂 🕗 
 - Dup2
 - I/O-redirection
