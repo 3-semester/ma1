@@ -41,7 +41,7 @@ char* trim(char* string){
 	//Move string back to given pointer
 	if (newStart != string) memmove(string, newStart, length+1);
 	//Return any now unused memory to the OS
-	//if (length != startLength) realloc(string, (length+1) * sizeof(char));
+	//if (length != startLength) realloc(string, (length+1) * sizeof(char)); //Messes with splitString
 	//Done :)
 	return string;
 }
