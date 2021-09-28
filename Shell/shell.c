@@ -37,13 +37,13 @@ void shell_loop(){
 		int numberOfArgs = 0;
 		while (argss[numberOfArgs]) numberOfArgs++;
 		shell_execute(numberOfArgs, argss);
-/*
-		free(userCommand);
+
+		//free(userCommand);
 		for (int i = 0; argss[i] != NULL; ++i) {
 			freeStringArray(argss[i]);
 		}
 		free(argss);
-		*/
+
 	}
 }
 
