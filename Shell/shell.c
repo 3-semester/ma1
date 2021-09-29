@@ -82,7 +82,7 @@ void shell_execute(int numberOfArgs, char*** argss){
 
 		if (pid == 0){ //In child
 			connectPipes(pipes, numberOfArgs - 1, i);
-			redirectIO(numberOfArgs, i, argss[i]);
+			//redirectIO(numberOfArgs, i, argss[i]);
 			if(execvp(argss[i][0], argss[i]) == -1){
 				fprintf(stderr, "No command found called %s - ERRNO: %d", argss[i][0], errno);
 				exit(0);
@@ -107,10 +107,13 @@ void connectPipes(int* pipes, int numberOfPipes, int processNumber){
 	if (processNumber < numberOfPipes) dup2(*(pipes + (processNumber * 2) + 1), STDOUT_FILENO); //Set stdout to write to pipe
 }
 
+//Todo: redirectIO doesn't allow append
+//Todo: redirectIO doesn't allow specification of file descriptor; doesn't allow redirection of errors
+//Todo: redirectIO doesn't implement '&' in redirection
 void redirectIO(int totalNumberOfProcesses, int processNumber, char** processArgs){
 	if (processNumber != 0 && processNumber != totalNumberOfProcesses-1) return;
 	int openFlag, stream;
-	if (processNumber == 0){
+	if (processNumber == 0){ //Todo: doesn't take into account that a single redirection of both input and output of 1 process
 		openFlag = O_RDONLY; stream = STDIN_FILENO;
 		while (*(++processArgs) && !strcmp(*(processArgs), redirectInputString));
 	} else {
