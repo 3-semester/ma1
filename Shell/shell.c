@@ -125,3 +125,21 @@ void redirectIO(int totalNumberOfProcesses, int processNumber, char** processArg
 	dup2(fd, stream);
 	close(fd);
 }
+int redirect_output(char **args, char **output_filename){
+    int i;
+    int j;
+
+    for (i=0; args [i] !=NULL; i++){
+        if(args[i][0] == '>'){
+            free(args[i]);
+
+            if(args[i+1] != NULL){
+                *output_filename = args[i+1];
+            }else{
+                return -1;
+            }
+
+        }
+    }
+    return 0;
+}
