@@ -40,12 +40,20 @@ void redirectIO(int totalNumberOfProcesses, int processNumber, char** processArg
 bool isRedirectString(char* string);
 
 /**
- * Determines the stream to be redirected given the arguments to a process starting at string containing
+ * Determines the stream to be redirected given the arguments to a process starting at the string containing
  * the specific redirection in question.
  * @param processArgs a pointer to an array of arguments to a process starting at the redirection string
- * @return the file descriptor of the string to be redirected
+ * @return the file descriptor of the stream to be redirected
  */
 int getStreamToRedirect(char** processArgs);
+
+/**
+ * Determines and returns the file descriptor of the destination of the IO-redirection given the arguments to a
+ * process starting at the string containing the specific redirection in question.
+ * @param processArgs pointer to an array of arguments to a process starting at the redirection string
+ * @return the file descriptor of the redirection destination
+ */
+int getRedirectDestination(char** processArgs);
 
 int current_status = 1;
 
@@ -133,9 +141,17 @@ int getStreamToRedirect(char** processArgs){
 	//Todo: allow specification of stream to redirect
 }
 
-//Todo: redirectIO doesn't allow append
-//Todo: redirectIO doesn't allow specification of file descriptor; doesn't allow redirection of errors
-//Todo: redirectIO doesn't implement '&' in redirection
+int getRedirectDestination(char** processArgs){
+	//Todo: assumes a space between redirect character and file
+	int flag;
+	if (stringContainsCharacter(processArgs, redirectIOCharacters[0])) flag = O_RDONLY;
+	else flag = O_WRONLY;
+	open(trim(*(++processArgs)), flag);
+	//Todo: doesn't allow append
+	//Todo: doesn't implement '&' in redirection
+}
+
+
 void redirectIO(int totalNumberOfProcesses, int processNumber, char** processArgs){
 	//Only makes sense to redirect to file if at least either input or output isn't coming from or going to a pipe
 	if (processNumber != 0 && processNumber != totalNumberOfProcesses-1) return; //not always true?
