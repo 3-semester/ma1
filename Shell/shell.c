@@ -131,7 +131,7 @@ void connectPipes(int* pipes, int numberOfPipes, int processNumber){
 }
 
 bool isRedirectString(char* string){
-	if (stringContainsCharacters(string, redirectCharacters)) return true;
+	if (stringContainsCharacters(string, redirectIOCharacters)) return true;
 }
 
 
@@ -156,6 +156,13 @@ void redirectIO(int totalNumberOfProcesses, int processNumber, char** processArg
 	//Only makes sense to redirect to file if at least either input or output isn't coming from or going to a pipe
 	if (processNumber != 0 && processNumber != totalNumberOfProcesses-1) return; //not always true?
 
+	while (*(++processArgs)){
+		if (!isRedirectString(*processArgs)) continue;
+		int fd = getStreamToRedirect(processArgs);
+		dup2(getStreamToRedirect(processArgs), getRedirectDestination(processArgs));
+		close(fd);
+	}
+/*
 	int openFlag, stream;
 	if (processNumber == 0){ //Todo: doesn't take into account that a single redirection of both input and output of 1 process
 		openFlag = O_RDONLY; stream = STDIN_FILENO;
@@ -168,6 +175,7 @@ void redirectIO(int totalNumberOfProcesses, int processNumber, char** processArg
 	int fd = open(trim(*(++processArgs)), openFlag);
 	dup2(fd, stream);
 	close(fd);
+ */
 }
 int redirect_output(char **args, char **output_filename){
     int i;
