@@ -12,6 +12,7 @@
 char* newString(unsigned long long length){
 	if (length > MAX_STRING_LENGTH) return NULL;
 
+
 	char* string = NULL;
 	while (string == NULL) string = calloc(length + 1, sizeof(char));
 	return string;
@@ -41,7 +42,7 @@ char* trim(char* string){
 	//Move string back to given pointer
 	if (newStart != string) memmove(string, newStart, length+1);
 	//Return any now unused memory to the OS
-	//if (length != startLength) realloc(string, (length+1) * sizeof(char));
+	//if (length != startLength) realloc(string, (length+1) * sizeof(char)); //Messes with splitString
 	//Done :)
 	return string;
 }
@@ -61,11 +62,8 @@ char** splitString(char* string, char* delim){
 }
 
 void freeStringArray(char** stringArray){
-	char** strArr = stringArray;
-	while (stringArray){
-		free(*stringArray);
-		stringArray++;
-	}
+	char** strArr = stringArray--;
+	while (*(++stringArray)) free(*stringArray);
 	free(strArr);
 }
 
