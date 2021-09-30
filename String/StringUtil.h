@@ -12,8 +12,15 @@
 
 #define MAX_STRING_LENGTH 32768
 const char pipeString[] = "|";
+/**
+ * Respectively the redirect input and output characters
+ */
+const char redirectIOCharacters[] = {'<', '>'};
 const char redirectOutputString[] = ">";
+const char redirectOutputAppendString[] = ">>";
 const char redirectInputString[] = "<";
+const char redirectInputAppendString[] = "<<";
+
 
 
 /**
@@ -65,5 +72,13 @@ void freeStringArray(char** stringArray);
  * @return true if the character is contained in the string, otherwise false
  */
 bool stringContainsCharacter(char* string, char character);
+
+/**
+ * Returns whether the specified null-terminated string contains any of the specified characters
+ * @param string the null-terminated string to search
+ * @param characters an array of characters to find an element of
+ * @return true if any of the characters is contained in the string, otherwise false
+ */
+bool stringContainsCharacters(char* string, char characters[]);
 
 #endif //MANDATORY_ASSIGNMENT_SHELL_STRING_H

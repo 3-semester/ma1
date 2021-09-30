@@ -70,3 +70,11 @@ void freeStringArray(char** stringArray){
 bool stringContainsCharacter(char* string, char character){
 	return strchr(string, character) != NULL;
 }
+
+bool stringContainsCharacters(char* string, char characters[]){
+	while (*characters){
+		if (stringContainsCharacter(string, *characters)) return true;
+		characters++;
+	}
+	return false;
+}
