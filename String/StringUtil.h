@@ -12,7 +12,10 @@
 
 #define MAX_STRING_LENGTH 32768
 const char pipeString[] = "|";
-const char redirectCharacters[] = {'>', '<'};
+/**
+ * Respectively the redirect input and output characters
+ */
+const char redirectIOCharacters[] = {'<', '>'};
 const char redirectOutputString[] = ">";
 const char redirectOutputAppendString[] = ">>";
 const char redirectInputString[] = "<";
