@@ -66,6 +66,22 @@ char** splitString(char* string, char* delim);
 void freeStringArray(char** stringArray);
 
 /**
+ * Returns the position of the of last occurrence of the specified needle in the specified haystack
+ * @param haystack the string in which to find the position of the needle
+ * @param needle the string to find the position of the last occurrence of in the haystack
+ * @return the position of the last occurrence of needle in the haystack or -1 if not contained in the haystack
+ */
+int getLastOccurrenceOfString(char* haystack, char* needle);
+
+/**
+ * Returns the position of the of last occurrence of the specified needle in the specified haystack
+ * @param haystack the string in which to find the position of the needle
+ * @param needle the character to find the position of the last occurrence of in the haystack
+ * @return the position of the last occurrence of needle in the haystack or -1 if not contained in the haystack
+ */
+int getLastOccurrenceOfCharacter(char* haystack, char needle);
+
+/**
  * Returns whether the specified null-terminated string contains the specified character
  * @param string the null-terminated string to search
  * @param character the character to find

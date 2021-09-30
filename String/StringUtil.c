@@ -67,6 +67,24 @@ void freeStringArray(char** stringArray){
 	free(strArr);
 }
 
+int getLastOccurrenceOfString(char* haystack, char* needle){
+	int last = -1;
+	char* str = NULL, *temp;
+	while ((temp = strchr(haystack, needle))){
+		str = temp;
+	}
+	if (str == NULL) return -1;
+	return strlen(haystack) - strlen(str);
+}
+
+int getLastOccurrenceOfCharacter(char* haystack, char needle){
+	char* string = newString(1);
+	*string = needle;
+	int position = getLastOccurrenceOfString(haystack, string);
+	free(string);
+	return position;
+}
+
 bool stringContainsCharacter(char* string, char character){
 	return strchr(string, character) != NULL;
 }
