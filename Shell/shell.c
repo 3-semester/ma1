@@ -39,6 +39,14 @@ void redirectIO(int totalNumberOfProcesses, int processNumber, char** processArg
  */
 bool isRedirectString(char* string);
 
+/**
+ * Determines the stream to be redirected given the arguments to a process starting at string containing
+ * the specific redirection in question.
+ * @param processArgs a pointer to an array of arguments to a process starting at the redirection string
+ * @return the file descriptor of the string to be redirected
+ */
+int getStreamToRedirect(char** processArgs);
+
 int current_status = 1;
 
 void shell_loop(){
@@ -116,6 +124,13 @@ void connectPipes(int* pipes, int numberOfPipes, int processNumber){
 
 bool isRedirectString(char* string){
 	if (stringContainsCharacters(string, redirectCharacters)) return true;
+}
+
+
+int getStreamToRedirect(char** processArgs){
+	if (**processArgs == redirectIOCharacters[0]) return STDIN_FILENO; //Is redirectInput and no stream was specified
+	if (**processArgs == redirectIOCharacters[1]) return STDOUT_FILENO; //Is redirectOutput and no stream was specified
+	//Todo: allow specification of stream to redirect
 }
 
 //Todo: redirectIO doesn't allow append
